@@ -1,14 +1,18 @@
 "use strict";
-const $ = e => document.getElementById(e);
+function $(e) {
+  return document.getElementById(e);
+}
+function getText(path, onload) {
+  const n = new XMLHttpRequest();
+  n.open("GET", path);
+  n.onload = onload;
+  n.send(null);
+}
 
 $("button1").onclick = function() {
-  const formdata = new FormData();
-  const n = new XMLHttpRequest();
-  n.open("GET", "/sample.txt");
-  n.onload = function() {
+  getText("/sample.txt", function() {
     $("text1").textContent = this.responseText;
-  };
-  n.send(formdata);
+  });
 };
 
 $("button2").onclick = function() {
