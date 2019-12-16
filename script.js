@@ -18,3 +18,9 @@ $("button1").onclick = function() {
 $("button2").onclick = function() {
   $("img1").src = "/map.png";
 };
+
+$("button3").onclick = function() {
+  getText("/sample.txt", function() {
+    $("test").textContent = this.responseText;
+  });
+};
