@@ -21,6 +21,6 @@ $("button2").onclick = function() {
 
 $("button3").onclick = function() {
   getText("/sample.txt", function() {
-    $("test").textContent = this.responseText;
+    $("text1").textContent = this.responseText;
   });
 };
