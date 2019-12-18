@@ -2,4 +2,4 @@
 
 遠部作業用
 
-[https://scp2019-7.github.io/tree/onbe](https://scp2019-7.github.io/tree/onbe)
+[https://github.com/scp2019-7/scp2019-7.github.io/tree/onbe](https://github.com/scp2019-7/scp2019-7.github.io/tree/onbe)
