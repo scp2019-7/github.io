@@ -10,17 +10,17 @@ function getText(path, onload) {
 }
 
 $("button1").onclick = function() {
-  getText("/sample.txt", function() {
+  getText("sample.txt", function() {
     $("text1").textContent = this.responseText;
   });
 };
 
 $("button2").onclick = function() {
-  $("img1").src = "/map.png";
+  $("img1").src = "001.png";
 };
 
-$("button3").onclick = function() {
-  getText("/sample.txt", function() {
-    $("text1").textContent = this.responseText;
-  });
+$("button2").onclick = function() {
+  $("img1").src = "001_002.png";
+};
+
 };
