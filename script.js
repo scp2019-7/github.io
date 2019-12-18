@@ -31,8 +31,7 @@ $("button1").onclick = function() {
 };
 
 $("button2").onclick = function() {
-  // $("img1").src = getQRimage();
-  $("img1").src = "001.png";
+  $("img1").src = getQRimage();
 };
 
 $("button3").onclick = function() {
