@@ -35,9 +35,9 @@ $("button2").onclick = function() {
   $("img1").src = "001.png";
 };
 
-$("button2").onclick = function() {
+$("button3").onclick = function() {
   var sID = "001";
-  var gID = "001";
+  var gID = "002";
   $("img1").src = getRootimage(sID,gID);
 };
 
