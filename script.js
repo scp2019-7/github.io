@@ -8,19 +8,33 @@ function getText(path, onload) {
   n.onload = onload;
   n.send(null);
 }
+function getQRimage(){
+  var urlParam = location.search.substring(1);
+  if(urlParam) {
+    var param = urlParam.split('&');
+    if (param.length == 1) {
+      var Iname = param[0] + ".png";
+    }
+    return Iname;
+  }
+}
+
+function getRootimage(sID,gID){
+  var Iname = sID + "_" + gID + ".png";
+  return Iname;
+}
 
 $("button1").onclick = function() {
-  getText("sample.txt", function() {
+  getText("./sample.txt", function() {
     $("text1").textContent = this.responseText;
   });
 };
 
 $("button2").onclick = function() {
-  $("img1").src = "001.png";
+  $("img1").src = getQRimage();
 };
 
 $("button2").onclick = function() {
-  $("img1").src = "001_002.png";
+  $("img1").src = getRootimage();
 };
 
-};
