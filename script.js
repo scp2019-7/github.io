@@ -31,10 +31,13 @@ $("button1").onclick = function() {
 };
 
 $("button2").onclick = function() {
-  $("img1").src = getQRimage();
+  // $("img1").src = getQRimage();
+  $("img1").src = "001.png";
 };
 
 $("button2").onclick = function() {
-  $("img1").src = getRootimage();
+  var sID = "001";
+  var gID = "001";
+  $("img1").src = getRootimage(sID,gID);
 };
 
