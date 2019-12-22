@@ -8,10 +8,10 @@ function getText(path, onload) {
   n.onload = onload;
   n.send(null);
 }
-function getQRimage(){
+function getQRimage() {
   var urlParam = location.search.substring(1);
-  if(urlParam) {
-    var param = urlParam.split('&');
+  if (urlParam) {
+    var param = urlParam.split("&");
     if (param.length == 1) {
       var Iname = param[0] + ".png";
     }
@@ -19,7 +19,7 @@ function getQRimage(){
   }
 }
 
-function getRootimage(sID,gID){
+function getRootimage(sID, gID) {
   var Iname = sID + "_" + gID + ".png";
   return Iname;
 }
@@ -37,6 +37,27 @@ $("button2").onclick = function() {
 $("button3").onclick = function() {
   var sID = "001";
   var gID = "002";
-  $("img1").src = getRootimage(sID,gID);
+  $("img1").src = getRootimage(sID, gID);
 };
 
+function openQRCamera(node) {
+  var reader = new FileReader();
+  reader.onload = function() {
+    node.value = "";
+    qrcode.callback = function(res) {
+      if (res instanceof Error) {
+        alert(
+          "No QR code found. Please make sure the QR code is within the camera's frame and try again."
+        );
+      } else {
+        node.parentNode.previousElementSibling.value = res;
+      }
+    };
+    qrcode.decode(reader.result);
+  };
+  reader.readAsDataURL(node.files[0]);
+}
+
+function showQRIntro() {
+  return confirm("Use your camera to take a picture of a QR code.");
+}
