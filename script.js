@@ -52,8 +52,8 @@ jQuery(function(){
       var regexp = new RegExp('(' + request.term + ')');
       
       jQuery.each(dataList, function(i, values){
-        if(values[0].match(regexp) || values[1].match(regexp) || values[2].match(regexp)){
-          suggests.push(values[0]);
+        if(values[4].match(regexp)){
+          suggests.push(values[4]);
         }
       });
       
