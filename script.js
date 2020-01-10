@@ -80,9 +80,14 @@ function hoge(code)
 
 
 window.onload = function() {
+
+  var cur_QRID = getQRID();
+  var QRdb = csvToArray("database/qr_info.csv")
+
+
   var canvas = document.getElementById('axisCanvas');
-  var canvasW = 200;
-  var canvasH = 300;
+  var canvasW = 600;
+  var canvasH = 400;
   canvas.width = canvasW;
   canvas.height = canvasH;
   var image = new Image();
