@@ -1,5 +1,5 @@
-import Graph from "src/dijkstra/Graph.js";
-import Edge from "src/dijkstra/Edge.js";
+import Graph from "./src/dijkstra/Graph.js";
+import Edge from "./src/dijkstra/Edge.js";
 
 const index    = Symbol(); // Graphクラス内でのインデックス
 const x        = Symbol(); // x座標

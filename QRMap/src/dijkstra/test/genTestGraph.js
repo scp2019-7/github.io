@@ -1,6 +1,6 @@
-import Edge from "src/dijkstra/Edge.js";
-import Graph from "src/dijkstra/Graph.js";
-import Vertex from "src/dijkstra/Vertex.js";
+import Edge from "./src/dijkstra/Edge.js";
+import Graph from "./src/dijkstra/Graph.js";
+import Vertex from "./src/dijkstra/Vertex.js";
 
 export default function genTestGraph(){
     // Graphを生成
