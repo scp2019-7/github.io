@@ -1,7 +1,7 @@
-import BinaryHeap from "/src/dijkstra/BinaryHeap.js";
-import Edge from "/src/dijkstra/Edge.js";
-import Graph from "/src/dijkstra/Graph.js";
-import Vertex from "/src/dijkstra/Vertex.js";
+import BinaryHeap from "src/dijkstra/BinaryHeap.js";
+import Edge from "src/dijkstra/Edge.js";
+import Graph from "src/dijkstra/Graph.js";
+import Vertex from "src/dijkstra/Vertex.js";
 
 // 入力
 // startIndex：探索の始点となるVertexクラスのindex
