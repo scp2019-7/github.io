@@ -37,7 +37,7 @@ function csvToArray(path) {
 
 function QRID2index(QRID,QRdb){
   for (var i = 0; i < QRdb.length;++i) {
-      if(QRdb[i][0]==QRID){
+      if(QRdb[0][i]==QRID){
         var index = i;
     }
     return index;
