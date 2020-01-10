@@ -60,9 +60,6 @@ export default function dijkstra(startIndex,goalIndex,graph){
     for(var i=0; shortestPath[i] !== startIndex; i++){
         shortestPath.push(path[shortestPath[i]]);
     }
-
-    console.log('path: [' + path + ']');
-    console.log('shortestPath: [' + shortestPath + ']');
-
+    
     return shortestPath;
 }
