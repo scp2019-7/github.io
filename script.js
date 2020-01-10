@@ -35,7 +35,8 @@ function csvToArray(path) {
         return csvData;
 }
 
-
+var cur_QRID = getQRID();
+var QRdb = csvToArray("database/qr_info.csv");
 // sample root
 var rootlist = [
   [100,120],
@@ -80,11 +81,6 @@ function hoge(code)
 
 
 window.onload = function() {
-
-  var cur_QRID = getQRID();
-  var QRdb = csvToArray("database/qr_info.csv")
-
-
   var canvas = document.getElementById('axisCanvas');
   var canvasW = 600;
   var canvasH = 400;
