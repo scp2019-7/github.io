@@ -115,7 +115,7 @@ window.onload = function() {
     ctx.beginPath();
     ctx.drawImage(image, 0, 0, image.naturalWidth, image.naturalHeight, 0, 0, canvasW, canvasH);
     ctx.fillStyle = 'hsl( 0, 100%, 50% )';
-    ctx.arc(cur_x*canvasW, cur_y*canvasH, 5, 0, Math.PI * 2, false);
+    ctx.arc(mouseX, mouseY, 5, 0, Math.PI * 2, false);
     ctx.fill();
      
     // 座標の表示テキストを描画
