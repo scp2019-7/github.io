@@ -35,8 +35,20 @@ function csvToArray(path) {
         return csvData;
 }
 
+function QRID2index(QRID,QRdb){
+  for (var i = 0; i < QRdb.length;++i) {
+      if(QRdb[0][i]==QRID){
+        var index = i;
+    }
+    return index;
+}
+
 var cur_QRID = getQRID();
 var QRdb = csvToArray("database/qr_info.csv");
+var cur_QRindex = QRID2index(cur_QRID,QRdb);
+var cur_x = QRdb[1][cur_QRindex];
+var cur_y = QRdb[2][cur_QRindex];
+
 // sample root
 var rootlist = [
   [100,120],
@@ -45,7 +57,6 @@ var rootlist = [
   [190,160],
   [190,200]
 ];
-
 jQuery(function(){  
   jQuery('#text1').autocomplete({
     source: function(request, response){
@@ -103,7 +114,7 @@ window.onload = function() {
     ctx.beginPath();
     ctx.drawImage(image, 0, 0, image.naturalWidth, image.naturalHeight, 0, 0, canvasW, canvasH);
     ctx.fillStyle = 'hsl( 0, 100%, 50% )';
-    ctx.arc(mouseX, mouseY, 5, 0, Math.PI * 2, false);
+    ctx.arc(cur_x*canvasW, cur_y*canvasH, 5, 0, Math.PI * 2, false);
     ctx.fill();
      
     // 座標の表示テキストを描画
