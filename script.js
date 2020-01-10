@@ -45,10 +45,11 @@ function QRID2index(QRID,QRdb){
 
 var cur_QRID = getQRID();
 var QRdb = csvToArray("database/qr_info.csv");
+/*
 var cur_QRindex = QRID2index(cur_QRID,QRdb);
 var cur_x = QRdb[1][cur_QRindex];
 var cur_y = QRdb[2][cur_QRindex];
-
+*/
 // sample root
 var rootlist = [
   [100,120],
