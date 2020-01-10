@@ -34,7 +34,7 @@ function csvToArray(path) {
         }
         return csvData;
 }
-/*
+
 function QRID2index(QRID,QRdb){
   for (var i = 0; i < QRdb.length;++i) {
       if(QRdb[i][0]==QRID){
@@ -42,7 +42,7 @@ function QRID2index(QRID,QRdb){
     }
     return index;
 }
-*/
+
 var cur_QRID = getQRID();
 var QRdb = csvToArray("database/qr_info.csv");
 /*
