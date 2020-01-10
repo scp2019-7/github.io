@@ -94,8 +94,8 @@ function hoge(code)
 
 window.onload = function() {
   var canvas = document.getElementById('axisCanvas');
-  var canvasW = 600;
-  var canvasH = 400;
+  var canvasW = 200;
+  var canvasH = 300;
   canvas.width = canvasW;
   canvas.height = canvasH;
   var image = new Image();
