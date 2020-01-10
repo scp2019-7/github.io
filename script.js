@@ -51,7 +51,7 @@ jQuery(function(){
       var suggests = [];
       var regexp = new RegExp('(' + request.term + ')');
       
-      jQuery.each(dataList, function(i, values){
+      jQuery.each(QRdb, function(i, values){
         if(values[4].match(regexp)){
           suggests.push(values[4]);
         }
