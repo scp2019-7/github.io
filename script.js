@@ -9,6 +9,7 @@ function getstartID() {
   if (urlParam) {
     var param = urlParam.split("&");
   }
+  if (param.length < 1) return -1;
   return param[0];
 }
 
@@ -17,6 +18,7 @@ function getgoalID() {
   if (urlParam) {
     var param = urlParam.split("&");
   }
+  if (param.length < 2) return -1;
   return param[1];
 }
 
@@ -98,7 +100,7 @@ window.onload = function () {
   var ctx = canvas.getContext('2d');
   var QRdb = csvToArray("database/qr_info.csv");
 
-  if (param.length == 1) {
+  if (this.getgoalID() == -1) {
     // 現在地取得
     var cur_QRID = getstartID();
     var cur_QRindex = Number(cur_QRID);
@@ -138,7 +140,7 @@ window.onload = function () {
     }
   }
 
-  if (param.length == 2) {
+  else {
     //hyouji
     var cur_QRID = getstartID();
     var cur_QRindex = Number(cur_QRID);
