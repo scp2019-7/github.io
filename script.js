@@ -178,53 +178,15 @@ window.onload = function () {
 };
 
 
-function kensaku(param) {
+function kensaku() {
   var goal = document.getElementById("text1").value;
   var gindex = goal2index(goal, QRdb);
   document.getElementById("text2").innerText = gindex;
-  param[1] = gindex;
   if (gindex == -1) {
     document.getElementById("text2").innerText = "正しい目的地を選択して下さい";
   }
-  else {
-    //hyouji
-    var canvas = document.getElementById('axisCanvas');
-    var ctx = canvas.getContext('2d');
-    var cur_QRID = getstartID();
-    var cur_QRindex = Number(cur_QRID);
-
-    // root
-    const graph = genTestGraph();
-    const shortestPath = dijkstra(cur_QRindex, gindex, graph);
-    console.log('shortestPath: [' + shortestPath + ']');
-
-    ctx.clearRect(0, 0, canvasW, canvasH);
-    var image = new Image();
-    let imagePath = "database/HonkanMap_1F.svg";
-    image.src = imagePath;
-    image.onload = function () {
-      ctx.drawImage(image, 0, 0, canvasW, canvasH);
-      ctx.beginPath();
-      ctx.fillStyle = 'hsl( 0, 100%, 50% )';
-      ctx.arc(QRdb[cur_QRindex][1] * canvasW, QRdb[cur_QRindex][2] * canvasH, 10, 0, Math.PI * 2, false);
-      ctx.fill();
-      ctx.closePath();
-
-      ctx.beginPath();
-      ctx.strokeStyle = 'hsl( 0, 100%, 50% )';
-      ctx.lineWidth = 5;
-      ctx.moveTo(QRdb[shortestPath[0]][1] * canvasW, QRdb[shortestPath[0]][2] * canvasH);
-      for (var i = 1; i < shortestPath.length; i++) {
-        ctx.lineTo(QRdb[shortestPath[i]][1] * canvasW, QRdb[shortestPath[i]][2] * canvasH);
-      }
-      //ctx.moveTo(QRdb[cur_QRindex][1] * canvasW, QRdb[cur_QRindex][2] * canvasH);
-      //ctx.lineTo(QRdb[gindex][1] * canvasW, QRdb[gindex][2] * canvasH);
-
-      ctx.stroke();
-      ctx.closePath();
-    };
-  }
-  return param;
+  else
+    location.href = "https://scp2019-7.github.io/index.html?" + getstartID() + '&' + gindex;
 }
 
 function hoge(code) {
