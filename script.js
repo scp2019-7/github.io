@@ -85,15 +85,7 @@ jQuery(function () {
 
 window.onload = function () {
 
- if (param.length==1){
-  // 現在地取得
-  var cur_QRID = getstartID(param);
-  var QRdb = csvToArray("database/qr_info.csv");
-  var cur_QRindex = Number(cur_QRID);
-  var cur_x = QRdb[cur_QRindex][1];
-  var cur_y = QRdb[cur_QRindex][2];
-
-  // 設定
+    // 設定
   var canvas = document.getElementById('axisCanvas');
   canvas.width = canvasW;
   canvas.height = canvasH;
@@ -101,6 +93,14 @@ window.onload = function () {
   let imagePath = "database/HonkanMap_1F.svg";
   image.src = imagePath;
   var ctx = canvas.getContext('2d');
+  var QRdb = csvToArray("database/qr_info.csv");
+
+ if (param.length==1){
+  // 現在地取得
+  var cur_QRID = getstartID(param);
+  var cur_QRindex = Number(cur_QRID);
+  var cur_x = QRdb[cur_QRindex][1];
+  var cur_y = QRdb[cur_QRindex][2];
 
   //地図表示
   image.onload = function () {
@@ -137,9 +137,6 @@ window.onload = function () {
 
  if (param.length==2){
     //hyouji
-    var QRdb = csvToArray("database/qr_info.csv");
-    var canvas = document.getElementById('axisCanvas');
-    var ctx = canvas.getContext('2d');
     var cur_QRID = getstartID(param);
     var cur_QRindex = Number(cur_QRID);
     var goalID = getgoalID(param);
