@@ -4,17 +4,20 @@ function $(e) {
   return document.getElementById(e);
 }
 
-var urlParam = location.search.substring(1);
-if (urlParam) {
-var param = urlParam.split("&");
+function getstartID() {
+  var urlParam = location.search.substring(1);
+  if (urlParam) {
+    var param = urlParam.split("&");
+  }
+  return param[0];
 }
 
-function getstartID(param) {
-    return param[0];
-}
-
-function getgoalID(param) {
-    return param[1];
+function getgoalID() {
+  var urlParam = location.search.substring(1);
+  if (urlParam) {
+    var param = urlParam.split("&");
+  }
+  return param[1];
 }
 
 function getRootimage(sID, gID) {
@@ -57,7 +60,7 @@ function goal2index(goal, QRdb) {
   return index;
 }
 
-var cur_QRID = getstartID(param);
+var cur_QRID = getstartID();
 var QRdb = csvToArray("database/qr_info.csv");
 var canvasW = 900;
 var canvasH = 600;
@@ -85,7 +88,7 @@ jQuery(function () {
 
 window.onload = function () {
 
-    // 設定
+  // 設定
   var canvas = document.getElementById('axisCanvas');
   canvas.width = canvasW;
   canvas.height = canvasH;
@@ -95,51 +98,51 @@ window.onload = function () {
   var ctx = canvas.getContext('2d');
   var QRdb = csvToArray("database/qr_info.csv");
 
- if (param.length==1){
-  // 現在地取得
-  var cur_QRID = getstartID(param);
-  var cur_QRindex = Number(cur_QRID);
-  var cur_x = QRdb[cur_QRindex][1];
-  var cur_y = QRdb[cur_QRindex][2];
-
-  //地図表示
-  image.onload = function () {
-    ctx.drawImage(image, 0, 0, canvasW, canvasH);
-    //現在地表示
-    ctx.beginPath();
-    ctx.fillStyle = 'hsl( 0, 100%, 50% )';
-    ctx.arc(cur_x * canvasW, cur_y * canvasH, 10, 0, Math.PI * 2, false);
-    ctx.fill();
-    ctx.closePath();
-  };
-
-  canvas.onclick = function (e) {
-
-    ctx.clearRect(0, 0, canvasW, canvasH);
-
-    var rect = e.target.getBoundingClientRect();
-    var mouseX = e.clientX - Math.floor(rect.left) - 2;
-    var mouseY = e.clientY - Math.floor(rect.top) - 2;
-
-    // 座標の表示テキストを描画
-    ctx.beginPath();
-    ctx.drawImage(image, 0, 0, canvasW, canvasH);
-    ctx.fillStyle = 'hsl( 0, 100%, 50% )';
-    ctx.arc(cur_x * canvasW, cur_y * canvasH, 10, 0, Math.PI * 2, false);
-    ctx.fill();
-    var maxWidth = 100;
-    ctx.textAlign = 'right';
-    ctx.fillText('( ' + mouseX + ', ' + mouseY + ' )', canvasW - 20, canvasH - 20, maxWidth);
-    // ctx.fillText('( ' + cur_x + ', ' + cur_y + ' )', 100, canvasH - 20, maxWidth);
-    ctx.closePath();
-  }
- }
-
- if (param.length==2){
-    //hyouji
-    var cur_QRID = getstartID(param);
+  if (param.length == 1) {
+    // 現在地取得
+    var cur_QRID = getstartID();
     var cur_QRindex = Number(cur_QRID);
-    var goalID = getgoalID(param);
+    var cur_x = QRdb[cur_QRindex][1];
+    var cur_y = QRdb[cur_QRindex][2];
+
+    //地図表示
+    image.onload = function () {
+      ctx.drawImage(image, 0, 0, canvasW, canvasH);
+      //現在地表示
+      ctx.beginPath();
+      ctx.fillStyle = 'hsl( 0, 100%, 50% )';
+      ctx.arc(cur_x * canvasW, cur_y * canvasH, 10, 0, Math.PI * 2, false);
+      ctx.fill();
+      ctx.closePath();
+    };
+
+    canvas.onclick = function (e) {
+
+      ctx.clearRect(0, 0, canvasW, canvasH);
+
+      var rect = e.target.getBoundingClientRect();
+      var mouseX = e.clientX - Math.floor(rect.left) - 2;
+      var mouseY = e.clientY - Math.floor(rect.top) - 2;
+
+      // 座標の表示テキストを描画
+      ctx.beginPath();
+      ctx.drawImage(image, 0, 0, canvasW, canvasH);
+      ctx.fillStyle = 'hsl( 0, 100%, 50% )';
+      ctx.arc(cur_x * canvasW, cur_y * canvasH, 10, 0, Math.PI * 2, false);
+      ctx.fill();
+      var maxWidth = 100;
+      ctx.textAlign = 'right';
+      ctx.fillText('( ' + mouseX + ', ' + mouseY + ' )', canvasW - 20, canvasH - 20, maxWidth);
+      // ctx.fillText('( ' + cur_x + ', ' + cur_y + ' )', 100, canvasH - 20, maxWidth);
+      ctx.closePath();
+    }
+  }
+
+  if (param.length == 2) {
+    //hyouji
+    var cur_QRID = getstartID();
+    var cur_QRindex = Number(cur_QRID);
+    var goalID = getgoalID();
     var gindex = Number(goalID);
     // root
     const graph = genTestGraph();
@@ -168,7 +171,7 @@ window.onload = function () {
       ctx.stroke();
       ctx.closePath();
     };
- }
+  }
 
 };
 
@@ -185,7 +188,7 @@ function kensaku(param) {
     //hyouji
     var canvas = document.getElementById('axisCanvas');
     var ctx = canvas.getContext('2d');
-    var cur_QRID = getstartID(param);
+    var cur_QRID = getstartID();
     var cur_QRindex = Number(cur_QRID);
 
     // root
