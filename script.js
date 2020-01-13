@@ -1,6 +1,6 @@
 "use strict";
-import genTestGraph from "./src/dijkstra/genTestGraph.js";
-import dijkstra from "./src/dijkstra/dijkstra.js";
+// import genTestGraph from "./src/dijkstra/genTestGraph.js";
+// import dijkstra from "./src/dijkstra/dijkstra.js";
 
 function $(e) {
   return document.getElementById(e);
@@ -135,7 +135,7 @@ window.onload = function() {
 };
 
 
-export function kensaku() {
+function kensaku() {
   var goal = document.getElementById("text1").value;
   var gindex = goal2index(goal,QRdb);
   document.getElementById("text2").innerText = gindex;
@@ -182,7 +182,7 @@ export function kensaku() {
   }
 }
 
-export function hoge(code)
+function hoge(code)
 {
 	//エンターキー押したら
 	if(13 === code)
