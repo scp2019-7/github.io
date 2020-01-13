@@ -27,9 +27,12 @@
   <div id="axisCanvasRapper">
     <canvas id="axisCanvas"></canvas>
   </div>
-  <video id="video" autoplay playsinline></video>
-  <canvas id="canvas" hidden></canvas>
-  <div id="outputMessage">No QR code detected.</div>
+
+  <input type="button" value="QR読み取り" onclick="toggleQR()" class="btn-flat-border" />
+
+  <video id="video" autoplay playsinline class="qr_video"></video>
+  <canvas id="canvas" hidden class="qr_canvas"></canvas>
+  <div id="outputMessage" class="qr_outputMessage">No QR code detected.</div>
 
   <!-- End your code here -->
 </body>

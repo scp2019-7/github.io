@@ -6,15 +6,16 @@
     position: relative;
   }
 
-  #video {
+  .qr_video {
     width: 100%;
-  }
-
-  #canvas {
     display: none;
   }
 
-  #outputMessage {
+  .qr_canvas {
+    display: none;
+  }
+
+  .qr_outputMessage {
     padding-bottom: 10px;
     word-wrap: break-word;
   }
