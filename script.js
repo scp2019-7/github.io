@@ -137,6 +137,7 @@ window.onload = function () {
 
  if (param.length==2){
     //hyouji
+    var QRdb = csvToArray("database/qr_info.csv");
     var canvas = document.getElementById('axisCanvas');
     var ctx = canvas.getContext('2d');
     var cur_QRID = getstartID(param);
