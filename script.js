@@ -85,7 +85,7 @@ jQuery(function () {
 
 window.onload = function () {
 
-//  if (param.length==1){
+ if (param.length==1){
   // 現在地取得
   var cur_QRID = getstartID(param);
   var QRdb = csvToArray("database/qr_info.csv");
@@ -133,15 +133,51 @@ window.onload = function () {
     // ctx.fillText('( ' + cur_x + ', ' + cur_y + ' )', 100, canvasH - 20, maxWidth);
     ctx.closePath();
   }
-//  }
+ }
+
+ if (param.length==2){
+    //hyouji
+    var canvas = document.getElementById('axisCanvas');
+    var ctx = canvas.getContext('2d');
+    var cur_QRID = getstartID(param);
+    var cur_QRindex = Number(cur_QRID);
+    var gindex = param[1];
+    // root
+    const graph = genTestGraph();
+    const shortestPath = dijkstra(cur_QRindex, gindex, graph);
+    console.log('shortestPath: [' + shortestPath + ']');
+
+    ctx.clearRect(0, 0, canvasW, canvasH);
+    var image = new Image();
+    let imagePath = "database/HonkanMap_1F.svg";
+    image.src = imagePath;
+    image.onload = function () {
+      ctx.drawImage(image, 0, 0, canvasW, canvasH);
+      ctx.beginPath();
+      ctx.fillStyle = 'hsl( 0, 100%, 50% )';
+      ctx.arc(QRdb[cur_QRindex][1] * canvasW, QRdb[cur_QRindex][2] * canvasH, 10, 0, Math.PI * 2, false);
+      ctx.fill();
+      ctx.closePath();
+
+      ctx.beginPath();
+      ctx.strokeStyle = 'hsl( 0, 100%, 50% )';
+      ctx.lineWidth = 5;
+      ctx.moveTo(QRdb[shortestPath[0]][1] * canvasW, QRdb[shortestPath[0]][2] * canvasH);
+      for (var i = 1; i < shortestPath.length; i++) {
+        ctx.lineTo(QRdb[shortestPath[i]][1] * canvasW, QRdb[shortestPath[i]][2] * canvasH);
+      }
+      ctx.stroke();
+      ctx.closePath();
+ }
 
 };
 
 
-function kensaku() {
+function kensaku(param) {
   var goal = document.getElementById("text1").value;
   var gindex = goal2index(goal, QRdb);
   document.getElementById("text2").innerText = gindex;
+  param[1] = gindex;
   if (gindex == -1) {
     document.getElementById("text2").innerText = "正しい目的地を選択して下さい";
   }
@@ -183,11 +219,12 @@ function kensaku() {
       ctx.closePath();
     };
   }
+  return param;
 }
 
 function hoge(code) {
   //エンターキー押したら
   if (13 === code) {
-    kensaku();
+    kensaku(param);
   }
 }
