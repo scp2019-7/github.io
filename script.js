@@ -85,7 +85,7 @@ jQuery(function () {
 
 window.onload = function () {
 
- if (param.length==1){
+//  if (param.length==1){
   // 現在地取得
   var cur_QRID = getstartID(param);
   var QRdb = csvToArray("database/qr_info.csv");
@@ -133,7 +133,7 @@ window.onload = function () {
     // ctx.fillText('( ' + cur_x + ', ' + cur_y + ' )', 100, canvasH - 20, maxWidth);
     ctx.closePath();
   }
- }
+//  }
 
 };
 
