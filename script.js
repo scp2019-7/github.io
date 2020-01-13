@@ -141,7 +141,7 @@ window.onload = function () {
     var ctx = canvas.getContext('2d');
     var cur_QRID = getstartID(param);
     var cur_QRindex = Number(cur_QRID);
-    var gindex = param[1];
+    var gindex = Number(param[1]);
     // root
     const graph = genTestGraph();
     const shortestPath = dijkstra(cur_QRindex, gindex, graph);
@@ -168,6 +168,7 @@ window.onload = function () {
       }
       ctx.stroke();
       ctx.closePath();
+    };
  }
 
 };
