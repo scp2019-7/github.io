@@ -3,19 +3,27 @@ var canvasElement = document.getElementById("canvas");
 var canvas = canvasElement.getContext("2d");
 var outputMessage = document.getElementById("outputMessage");
 
-navigator.mediaDevices.getUserMedia({ audio: false, video: { facingMode: { exact: "environment" } } })
-  .then(successCallback)
-  .catch(() =>
-    navigator.mediaDevices.getUserMedia({ audio: false, video: true })
-      .then(successCallback)
-      .catch(err => alert(err))
-  );
-
 function successCallback(stream) {
   video.srcObject = stream;
   requestAnimationFrame(tick);
 };
 
+function toggleQR() {
+  if ($("video").style.display == "block") {
+    $("video").style.display = "none";
+    video.srcObject.getTracks()[0].stop();
+  }
+  else {
+    $("video").style.display = "block";
+    navigator.mediaDevices.getUserMedia({ audio: false, video: { facingMode: { exact: "environment" } } })
+      .then(successCallback)
+      .catch(() =>
+        navigator.mediaDevices.getUserMedia({ audio: false, video: true })
+          .then(successCallback)
+          .catch(err => alert(err))
+      );
+  }
+}
 
 function tick() {
   if (video.readyState === video.HAVE_ENOUGH_DATA) {
