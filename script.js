@@ -9,11 +9,11 @@ if (urlParam) {
 var param = urlParam.split("&");
 }
 
-function getstartID() {
+function getstartID(param) {
     return param[0];
 }
 
-function getgoalID() {
+function getgoalID(param) {
     return param[1];
 }
 
@@ -57,7 +57,7 @@ function goal2index(goal, QRdb) {
   return index;
 }
 
-var cur_QRID = getstartID();
+var cur_QRID = getstartID(param);
 var QRdb = csvToArray("database/qr_info.csv");
 var canvasW = 900;
 var canvasH = 600;
@@ -87,7 +87,7 @@ window.onload = function () {
 
  if (param.length==1){
   // 現在地取得
-  var cur_QRID = getstartID();
+  var cur_QRID = getstartID(param);
   var QRdb = csvToArray("database/qr_info.csv");
   var cur_QRindex = Number(cur_QRID);
   var cur_x = QRdb[cur_QRindex][1];
@@ -149,7 +149,7 @@ function kensaku() {
     //hyouji
     var canvas = document.getElementById('axisCanvas');
     var ctx = canvas.getContext('2d');
-    var cur_QRID = getstartID();
+    var cur_QRID = getstartID(param);
     var cur_QRindex = Number(cur_QRID);
 
     // root
