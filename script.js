@@ -4,15 +4,17 @@ function $(e) {
   return document.getElementById(e);
 }
 
-function getQRID() {
-  var urlParam = location.search.substring(1);
+var urlParam = location.search.substring(1);
   if (urlParam) {
     var param = urlParam.split("&");
-    // if (param.length == 1) {
-    var QRID = param[0];
-    // }
-    return QRID;
   }
+
+function getQRID() {
+  return param[0];
+}
+
+function getgID() {
+  return param[1];
 }
 
 function getRootimage(sID, gID) {
@@ -84,6 +86,7 @@ jQuery(function () {
 window.onload = function () {
 
   // 現在地取得
+ if (param.Length==1){
   var cur_QRID = getQRID();
   var QRdb = csvToArray("database/qr_info.csv");
   var cur_QRindex = Number(cur_QRID) - 1;
@@ -109,6 +112,49 @@ window.onload = function () {
     ctx.fill();
     ctx.closePath();
   };
+ }
+
+ if (param.Length==2){
+  var cur_QRID = getQRID();
+  var gID = getgID();
+  var QRdb = csvToArray("database/qr_info.csv");
+  var cur_QRindex = Number(cur_QRID) - 1;
+  var gindex = Number(gID) - 1;
+  var cur_x = QRdb[cur_QRindex][1];
+  var cur_y = QRdb[cur_QRindex][2];
+  const graph = genTestGraph();
+  const shortestPath = dijkstra(cur_QRindex, gindex, graph);
+
+  // 設定
+  var canvas = document.getElementById('axisCanvas');
+  canvas.width = canvasW;
+  canvas.height = canvasH;
+  var image = new Image();
+  let imagePath = "database/HonkanMap_1F.svg";
+  image.src = imagePath;
+  var ctx = canvas.getContext('2d');
+
+  //地図表示
+  ctx.clearRect(0, 0, canvasW, canvasH);
+    image.onload = function () {
+      ctx.drawImage(image, 0, 0, canvasW, canvasH);
+      ctx.beginPath();
+      ctx.fillStyle = 'hsl( 0, 100%, 50% )';
+      ctx.arc(QRdb[cur_QRindex][1] * canvasW, QRdb[cur_QRindex][2] * canvasH, 10, 0, Math.PI * 2, false);
+      ctx.fill();
+      ctx.closePath();
+
+      ctx.beginPath();
+      ctx.strokeStyle = 'hsl( 0, 100%, 50% )';
+      ctx.lineWidth = 5;
+      ctx.moveTo(QRdb[shortestPath[0]][1] * canvasW, QRdb[shortestPath[0]][2] * canvasH);
+      for (var i = 1; i < shortestPath.length; i++) {
+        ctx.lineTo(QRdb[shortestPath[i]][1] * canvasW, QRdb[shortestPath[i]][2] * canvasH);
+      }
+      ctx.stroke();
+      ctx.closePath();
+    }
+ }
 
   canvas.onclick = function (e) {
 
