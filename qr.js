@@ -35,7 +35,10 @@ function tick() {
       inversionAttempts: "dontInvert",
     });
     outputMessage.innerText = code ? code.data : "No QR code detected.";
-    if (code) window.open(code.data, 'newtab');
+    if (code) {
+      if (!code.data.includes("https://scp2019-7.github.io/index.html?")) return;
+      location.href = code.data;
+    }
   }
   requestAnimationFrame(tick);
 }
