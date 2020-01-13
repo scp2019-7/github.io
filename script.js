@@ -4,15 +4,17 @@ function $(e) {
   return document.getElementById(e);
 }
 
-function getQRID() {
-  var urlParam = location.search.substring(1);
-  if (urlParam) {
-    var param = urlParam.split("&");
-    // if (param.length == 1) {
-    var QRID = param[0];
-    // }
-    return QRID;
-  }
+var urlParam = location.search.substring(1);
+if (urlParam) {
+var param = urlParam.split("&");
+}
+
+function getstartID() {
+    return param[0];
+}
+
+function getgoalID() {
+    return param[1];
 }
 
 function getRootimage(sID, gID) {
@@ -55,7 +57,7 @@ function goal2index(goal, QRdb) {
   return index;
 }
 
-var cur_QRID = getQRID();
+var cur_QRID = getstartID();
 var QRdb = csvToArray("database/qr_info.csv");
 var canvasW = 900;
 var canvasH = 600;
@@ -83,10 +85,11 @@ jQuery(function () {
 
 window.onload = function () {
 
+ if (param.length==1){
   // 現在地取得
-  var cur_QRID = getQRID();
+  var cur_QRID = getstartID();
   var QRdb = csvToArray("database/qr_info.csv");
-  var cur_QRindex = Number(cur_QRID) - 1;
+  var cur_QRindex = Number(cur_QRID);
   var cur_x = QRdb[cur_QRindex][1];
   var cur_y = QRdb[cur_QRindex][2];
 
@@ -130,6 +133,8 @@ window.onload = function () {
     // ctx.fillText('( ' + cur_x + ', ' + cur_y + ' )', 100, canvasH - 20, maxWidth);
     ctx.closePath();
   }
+ }
+
 };
 
 
@@ -144,8 +149,8 @@ function kensaku() {
     //hyouji
     var canvas = document.getElementById('axisCanvas');
     var ctx = canvas.getContext('2d');
-    var cur_QRID = getQRID();
-    var cur_QRindex = Number(cur_QRID) - 1;
+    var cur_QRID = getstartID();
+    var cur_QRindex = Number(cur_QRID);
 
     // root
     const graph = genTestGraph();
