@@ -233,4 +233,3 @@ function hoge(code) {
     kensaku();
   }
 }
-1
