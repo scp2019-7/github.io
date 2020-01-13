@@ -116,10 +116,9 @@ window.onload = function () {
 
  if (param.Length==2){
   var cur_QRID = getQRID();
-  var gID = getgID();
+  var gindex = getgID();
   var QRdb = csvToArray("database/qr_info.csv");
   var cur_QRindex = Number(cur_QRID) - 1;
-  var gindex = Number(gID) - 1;
   var cur_x = QRdb[cur_QRindex][1];
   var cur_y = QRdb[cur_QRindex][2];
   const graph = genTestGraph();
@@ -179,7 +178,7 @@ window.onload = function () {
 };
 
 
-function kensaku() {
+function kensaku(param) {
   var goal = document.getElementById("text1").value;
   var gindex = goal2index(goal, QRdb);
   document.getElementById("text2").innerText = gindex;
@@ -223,7 +222,9 @@ function kensaku() {
       ctx.stroke();
       ctx.closePath();
     };
+    param[1] = gindex;
   }
+  return param;
 }
 
 function hoge(code) {
