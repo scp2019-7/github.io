@@ -55,7 +55,7 @@ function QRID2index(QRID, QRdb) {
 function goal2index(goal, QRdb) {
   var index = -1;
   for (var i = 0; i < QRdb.length; ++i) {
-    if (QRdb[i][4] == goal) {
+    if (QRdb[i][5] == goal) {
       var index = i;
     }
   }
