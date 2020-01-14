@@ -12,7 +12,7 @@
 	.st6{fill:none;stroke:#040000;stroke-miterlimit:10;}
 	.st7{fill:none;stroke:#000000;stroke-width:0.25;stroke-miterlimit:10;}
 	.st8{fill:#FFFFFF;stroke:#040000;stroke-miterlimit:10;}
-	.st9{fill:#C30D23;stroke:#040000;stroke-miterlimit:10;}
+	.st9{fill:#F09286;stroke:#040000;stroke-miterlimit:10;}
 </style>
 <g id="レイヤー_1">
 	<rect x="198.6" y="373.9" class="st0" width="113.4" height="50.2"/>
@@ -70,8 +70,8 @@
 	<circle class="st4" cx="177.6" cy="366.8" r="2.8"/>
 	<circle class="st4" cx="333.5" cy="203.8" r="2.8"/>
 	<circle class="st4" cx="177.6" cy="203.8" r="2.8"/>
-	<circle class="st4" cx="64.2" cy="331.4" r="2.8"/>
-	<circle class="st4" cx="64.2" cy="118.8" r="2.8"/>
+	<circle class="st4" cx="64.2" cy="338.3" r="2.8"/>
+	<circle class="st4" cx="64.2" cy="111.8" r="2.8"/>
 	<circle class="st4" cx="333.5" cy="97.5" r="2.8"/>
 	<circle class="st4" cx="177.6" cy="97.5" r="2.8"/>
 	<circle class="st4" cx="255.5" cy="366.8" r="2.8"/>
@@ -321,9 +321,15 @@
 	</g>
 	<g>
 		
-			<rect x="227.1" y="374.1" transform="matrix(2.082342e-07 -1 1 2.082342e-07 -147.0713 615.376)" class="st8" width="14.2" height="14.2"/>
+			<rect x="227.1" y="374.1" transform="matrix(2.082343e-07 -1 1 2.082343e-07 -147.0713 615.376)" class="st8" width="14.2" height="14.2"/>
 		<path class="st9" d="M227.1,388.3c7.8,0,14.2-6.3,14.2-14.2h-14.2V388.3z"/>
 	</g>
+	<circle class="st4" cx="64.2" cy="366.8" r="2.8"/>
+	<circle class="st4" cx="446.9" cy="366.8" r="2.8"/>
+	<circle class="st4" cx="64.2" cy="97.3" r="2.8"/>
+	<circle class="st4" cx="446.9" cy="97.3" r="2.8"/>
+	<circle class="st4" cx="28.8" cy="338.3" r="2.8"/>
+	<circle class="st4" cx="28.8" cy="111.8" r="2.8"/>
 </g>
 <g id="バーテクス">
 </g>
