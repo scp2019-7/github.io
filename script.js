@@ -74,8 +74,8 @@ jQuery(function () {
       var regexp = new RegExp('(' + request.term + ')');
 
       jQuery.each(QRdb, function (i, values) {
-        if (values[4].match(regexp)) {
-          suggests.push(values[4]);
+        if (values[5].match(regexp)) {
+          suggests.push(values[5]);
         }
       });
 
