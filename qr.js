@@ -37,7 +37,7 @@ function tick() {
     outputMessage.innerText = code ? code.data : "No QR code detected.";
     if (code) {
       if (!code.data.includes("https://scp2019-7.github.io/index.html?")) return;
-      location.href = code.data + '&' + getgoalID();
+      location.search = '?' + code.data.split('?')[1] + '&' + getgoalID();
     }
   }
   requestAnimationFrame(tick);

@@ -154,7 +154,6 @@ window.onload = function () {
     const shortestPath = dijkstra(cur_QRindex, gindex, graph);
     console.log('shortestPath: [' + shortestPath + ']');
 
-    ctx.clearRect(0, 0, canvasW, canvasH);
     image.onload = function () {
       drawMap(image);
       drawCurrentPosition(cur_x, cur_y);
@@ -172,7 +171,7 @@ function kensaku() {
     $("text2").innerText = "正しい目的地を選択して下さい";
   }
   else
-    location.href = "https://scp2019-7.github.io/index.html?" + getstartID() + '&' + gindex;
+    location.search = "?" + getstartID() + '&' + gindex;
 }
 
 function hoge(code) {
