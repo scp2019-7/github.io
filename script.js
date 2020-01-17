@@ -1,5 +1,10 @@
 "use strict";
 
+const canvasW = 900;
+const canvasH = 600;
+const QRdb = csvToArray("database/qr_info.csv");
+let floor = 1;
+
 function $(e) {
   return document.getElementById(e);
 }
@@ -21,10 +26,6 @@ function getgoalID() {
   if (param.length < 2) return -1;
   return param[1];
 }
-
-const canvasW = 900;
-const canvasH = 600;
-const QRdb = csvToArray("database/qr_info.csv");
 
 function csvToArray(path) {
   var csvData = new Array();
@@ -72,15 +73,22 @@ jQuery(function () {
   });
 });
 
-function drawMap(image) {
-  let canvas = $('axisCanvas');
-  let ctx = canvas.getContext('2d');
-  ctx.drawImage(image, 0, 0, canvasW, canvasH);
+function drawMap() {
+  let image = new Image();
+  image.src = "database/HonkanMap_" + floor + "F.svg";
+
+  image.onload = () => {
+    let canvas = $('axisCanvas');
+    let ctx = canvas.getContext('2d');
+    ctx.globalCompositeOperation = "destination-over";
+    ctx.drawImage(image, 0, 0, canvasW, canvasH);
+  }
 }
 
 function drawCurrentPosition(cur_x, cur_y) {
   let canvas = $('axisCanvas');
   let ctx = canvas.getContext('2d');
+  ctx.globalCompositeOperation = "source-over";
   ctx.beginPath();
   ctx.fillStyle = 'hsl( 0, 100%, 50% )';
   ctx.arc(cur_x * canvasW, cur_y * canvasH, 10, 0, Math.PI * 2, false);
@@ -91,6 +99,7 @@ function drawCurrentPosition(cur_x, cur_y) {
 function drawPath(shortestPath) {
   let canvas = $('axisCanvas');
   let ctx = canvas.getContext('2d');
+  ctx.globalCompositeOperation = "source-over";
   ctx.beginPath();
   ctx.strokeStyle = 'hsl( 0, 100%, 50% )';
   ctx.lineWidth = 5;
@@ -102,8 +111,25 @@ function drawPath(shortestPath) {
   ctx.closePath();
 }
 
+function drawClikedPosition(e) {
+  let canvas = $('axisCanvas');
+  let ctx = canvas.getContext('2d');
+  ctx.globalCompositeOperation = "source-over";
+  const rect = e.target.getBoundingClientRect();
+  const mouseX = e.clientX - Math.floor(rect.left) - 2;
+  const mouseY = e.clientY - Math.floor(rect.top) - 2;
 
-window.onload = function () {
+  // 座標の表示テキストを描画
+  ctx.beginPath();
+  var maxWidth = 100;
+  ctx.textAlign = 'right';
+  ctx.fillText('( ' + mouseX + ', ' + mouseY + ' )', canvasW - 20, canvasH - 20, maxWidth);
+  ctx.closePath();
+}
+
+
+window.onload = draw;
+function draw() {
   let canvas = $('axisCanvas');
   let ctx = canvas.getContext('2d');
 
@@ -116,49 +142,22 @@ window.onload = function () {
   const cur_x = QRdb[cur_QRindex][1];
   const cur_y = QRdb[cur_QRindex][2];
 
-  let image = new Image();
-  image.src = "database/HonkanMap_1F.svg";
+  drawMap();
+  drawCurrentPosition(cur_x, cur_y);
 
-  if (this.getgoalID() == -1) {
-    //地図表示
-
-    image.onload = () => {
-      drawMap(image);
-      drawCurrentPosition(cur_x, cur_y);
-    };
-
-    canvas.onclick = function (e) {
-      ctx.clearRect(0, 0, canvasW, canvasH);
-      drawMap(image);
-      drawCurrentPosition(cur_x, cur_y);
-
-      const rect = e.target.getBoundingClientRect();
-      const mouseX = e.clientX - Math.floor(rect.left) - 2;
-      const mouseY = e.clientY - Math.floor(rect.top) - 2;
-
-      // 座標の表示テキストを描画
-      ctx.beginPath();
-      var maxWidth = 100;
-      ctx.textAlign = 'right';
-      ctx.fillText('( ' + mouseX + ', ' + mouseY + ' )', canvasW - 20, canvasH - 20, maxWidth);
-      // ctx.fillText('( ' + cur_x + ', ' + cur_y + ' )', 100, canvasH - 20, maxWidth);
-      ctx.closePath();
-    }
-  }
-
-  else {
-    var goalID = getgoalID();
-    var gindex = Number(goalID);
-    // root
+  const goalID = getgoalID();
+  if (goalID != -1) {
     const graph = genTestGraph();
-    const shortestPath = dijkstra(cur_QRindex, gindex, graph);
+    const shortestPath = dijkstra(cur_QRindex, Number(goalID), graph);
     console.log('shortestPath: [' + shortestPath + ']');
 
-    image.onload = function () {
-      drawMap(image);
-      drawCurrentPosition(cur_x, cur_y);
-      drawPath(shortestPath);
-    };
+    drawPath(shortestPath);
+  }
+
+  canvas.onclick = function (e) {
+    ctx.clearRect(0, 0, canvasW, canvasH);
+    draw();
+    drawClikedPosition(e);
   }
 };
 
@@ -167,9 +166,8 @@ function kensaku() {
   var goal = $("text1").value;
   var gindex = goal2index(goal, QRdb);
   $("text2").innerText = gindex;
-  if (gindex == -1) {
+  if (gindex == -1)
     $("text2").innerText = "正しい目的地を選択して下さい";
-  }
   else
     location.search = "?" + getstartID() + '&' + gindex;
 }
@@ -179,4 +177,9 @@ function hoge(code) {
   if (13 === code) {
     kensaku(param);
   }
+}
+
+function changeFloor(f) {
+  floor = f;
+  draw();
 }

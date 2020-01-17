@@ -20,9 +20,12 @@
     <input type="text" id="text1" placeholder="目的地を入力" onkeypress="hoge(event.keyCode);" class="ef" />
     <input type="button" id="button1" value="検索" onclick="kensaku()" class="btn-flat-border" />
   </label>
-
+  <div id="text2"></div>
   </br>
-  <div id="text2">書き換えます。</div>
+  </br>
+  <input type="button" id="1f_button" value="1F" onclick="changeFloor(1)" class="btn-flat-border" />
+  <input type="button" id="2f_button" value="2F" onclick="changeFloor(2)" class="btn-flat-border" />
+  </br>
   <div id="axisCanvasRapper">
     <canvas id="axisCanvas"></canvas>
   </div>
