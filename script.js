@@ -139,6 +139,39 @@ function drawClikedPosition(e) {
   ctx.closePath();
 }
 
+function drawkaidan(shortestPath){
+    var floorPath = new Array();
+    for (var i = 0; i < shortestPath.length; i++){
+        floorPath[i] = QRdb[shortestPath[i]][3];
+    }
+    var floorNum = [...new Set(floorPath)];
+    if (floorNum==1) return;
+    
+    var cur_floor = floorPath[0];
+    if (floor==cur_floor) return;
+    for (var i = 0; i < floorPath.length; i++){
+        if (floorPath[i]==cur_floor) {
+            var kaidan_x = canvasW*QRdb[shortestPath[i]][1];
+            var kaidan_y = canvasH*QRdb[shortestPath[i]][2];
+        }
+    }
+
+    let Ik = new Image();
+    if (floorNum[1]-floorNum[0]==1){
+        Ik.src = "database/down.svg";
+    }
+    else Ik.src = "database/up.svg";
+
+    Ik.onload = () => {
+        let canvas = $('axisCanvas');
+        let ctx = canvas.getContext('2d');
+        ctx.beginPath();
+        ctx.globalCompositeOperation = "source-over";
+        ctx.drawImage(Ik, kaidan_x, kaidan_y, 40, 40);
+        ctx.closePath();
+    }
+}
+
 
 window.onload = draw;
 function draw() {
@@ -162,6 +195,7 @@ function draw() {
     console.log('shortestPath: [' + shortestPath + ']');
 
     drawPath(shortestPath);
+    drawkaidan(shortestPath);
   }
 
   canvas.onclick = function (e) {
