@@ -85,7 +85,12 @@ function drawMap() {
   }
 }
 
-function drawCurrentPosition(cur_x, cur_y) {
+function drawCurrentPosition(cur_QRindex) {
+  const cur_x = QRdb[cur_QRindex][1];
+  const cur_y = QRdb[cur_QRindex][2];
+  const cur_z = QRdb[cur_QRindex][3];
+  if (cur_z != floor) return;
+
   let canvas = $('axisCanvas');
   let ctx = canvas.getContext('2d');
   ctx.globalCompositeOperation = "source-over";
@@ -103,9 +108,16 @@ function drawPath(shortestPath) {
   ctx.beginPath();
   ctx.strokeStyle = 'hsl( 0, 100%, 50% )';
   ctx.lineWidth = 5;
-  ctx.moveTo(QRdb[shortestPath[0]][1] * canvasW, QRdb[shortestPath[0]][2] * canvasH);
-  for (var i = 1; i < shortestPath.length; i++) {
-    ctx.lineTo(QRdb[shortestPath[i]][1] * canvasW, QRdb[shortestPath[i]][2] * canvasH);
+
+  let first_line = true;
+  for (var i = 0; i < shortestPath.length; i++) {
+    if (QRdb[shortestPath[i]][3] != floor) continue; // z が今の階じゃなかったら
+    if (first_line) {
+      first_line = false;
+      ctx.moveTo(QRdb[shortestPath[i]][1] * canvasW, QRdb[shortestPath[i]][2] * canvasH);
+    }
+    else
+      ctx.lineTo(QRdb[shortestPath[i]][1] * canvasW, QRdb[shortestPath[i]][2] * canvasH);
   }
   ctx.stroke();
   ctx.closePath();
@@ -139,11 +151,9 @@ function draw() {
   // 現在地取得
   const cur_QRID = getstartID();
   const cur_QRindex = Number(cur_QRID);
-  const cur_x = QRdb[cur_QRindex][1];
-  const cur_y = QRdb[cur_QRindex][2];
 
   drawMap();
-  drawCurrentPosition(cur_x, cur_y);
+  drawCurrentPosition(cur_QRindex);
 
   const goalID = getgoalID();
   if (goalID != -1) {
