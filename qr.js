@@ -1,9 +1,7 @@
-let video = document.getElementById("video");
-let canvasElement = document.getElementById("axisCanvas");
-let canvas = canvasElement.getContext("2d");
-let outputMessage = document.getElementById("outputMessage");
-
-let show_video = false;
+var video = document.getElementById("video");
+var canvasElement = document.getElementById("canvas");
+var canvas = canvasElement.getContext("2d");
+var outputMessage = document.getElementById("outputMessage");
 
 function successCallback(stream) {
   video.srcObject = stream;
@@ -11,14 +9,13 @@ function successCallback(stream) {
 };
 
 function toggleQR() {
-  if (show_video) {
-    show_video = false;
+  if ($("video").style.display == "block") {
+    $("video").style.display = "none";
     video.srcObject.getTracks()[0].stop();
     $("qr_button").value = "QR読み込み";
-    draw();
   }
   else {
-    show_video = true;
+    $("video").style.display = "block";
     navigator.mediaDevices.getUserMedia({ audio: false, video: { facingMode: { exact: "environment" } } })
       .then(successCallback)
       .catch(() =>
@@ -31,7 +28,6 @@ function toggleQR() {
 }
 
 function tick() {
-  if (!show_video) return;
   if (video.readyState === video.HAVE_ENOUGH_DATA) {
     canvasElement.height = video.videoHeight;
     canvasElement.width = video.videoWidth;

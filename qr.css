@@ -7,11 +7,15 @@
   }
 
   .qr_video {
+    width: 100%;
+    display: none;
+  }
+
+  .qr_canvas {
     display: none;
   }
 
   .qr_outputMessage {
     padding-bottom: 10px;
     word-wrap: break-word;
-    display: none;
   }
