@@ -67,6 +67,13 @@ jQuery(function () {
 
       response(suggests);
     },
+    focus: function (request, response){
+      var suggests = [];
+      jQuery.each(QRdb, function (i, values) {
+          suggests.push(values[5]);
+      });
+      response(suggests);
+    },
     autoFocus: true,
     delay: 300,
     minLength: 0
