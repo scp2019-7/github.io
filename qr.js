@@ -36,7 +36,7 @@ function tick() {
     const code = jsQR(imageData.data, imageData.width, imageData.height, {
       inversionAttempts: "dontInvert",
     });
-    outputMessage.innerText = code ? code.data : "No QR code detected.";
+    outputMessage.innerText = code ? code.data : "";
     if (code) {
       if (!code.data.includes("https://scp2019-7.github.io/index.html?")) return;
       location.search = '?' + code.data.split('?')[1] + '&' + getgoalID();
