@@ -60,10 +60,7 @@ jQuery(function () {
       var regexp = new RegExp('(' + request.term + ')');
 
       jQuery.each(QRdb, function (i, values) {
-        if (regexp==“”) {
-          suggests.push(values[5]);
-        }
-        elseif (values[5].match(regexp) || values[6].match(regexp)) {
+        if (values[5].match(regexp) || values[6].match(regexp)) {
           suggests.push(values[5]);
         }
       });
