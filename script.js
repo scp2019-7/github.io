@@ -173,7 +173,13 @@ function drawkaidan(shortestPath) {
 }
 
 
-window.onload = draw;
+window.onload = () => {
+  const cur_QRID = getstartID();
+  const cur_QRindex = Number(cur_QRID);
+  const cur_z = QRdb[cur_QRindex][3];
+  changeFloor(cur_z);
+  draw();
+};
 function draw() {
   let canvas = $('axisCanvas');
   let ctx = canvas.getContext('2d');
