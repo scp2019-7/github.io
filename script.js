@@ -96,7 +96,7 @@ function drawCurrentPosition(cur_QRindex) {
   ctx.globalCompositeOperation = "source-over";
   ctx.beginPath();
   ctx.fillStyle = 'hsl( 0, 100%, 50% )';
-  ctx.arc(cur_x * canvasW, cur_y * canvasH, 10, 0, Math.PI * 2, false);
+  ctx.arc(cur_x * canvasW, cur_y * canvasH, 20, 0, Math.PI * 2, false);
   ctx.fill();
   ctx.closePath();
 }
@@ -107,7 +107,7 @@ function drawPath(shortestPath) {
   ctx.globalCompositeOperation = "source-over";
   ctx.beginPath();
   ctx.strokeStyle = 'hsl( 0, 100%, 50% )';
-  ctx.lineWidth = 5;
+  ctx.lineWidth = 10;
 
   let first_line = true;
   for (var i = 0; i < shortestPath.length; i++) {
@@ -120,6 +120,14 @@ function drawPath(shortestPath) {
       ctx.lineTo(QRdb[shortestPath[i]][1] * canvasW, QRdb[shortestPath[i]][2] * canvasH);
   }
   ctx.stroke();
+  ctx.closePath();
+
+  const goal_x = QRdb[shortestPath[0]][1];
+  const goal_y = QRdb[shortestPath[0]][2];
+  ctx.beginPath();
+  ctx.fillStyle = 'hsl( 0, 100%, 20% )';
+  ctx.arc(goal_x * canvasW, goal_y * canvasH, 20, 0, Math.PI * 2, false);
+  ctx.fill();
   ctx.closePath();
 }
 
