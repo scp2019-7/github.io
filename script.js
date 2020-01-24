@@ -69,7 +69,7 @@ jQuery(function () {
     },
     autoFocus: true,
     delay: 300,
-    minLength: 1
+    minLength: 0
   });
 });
 
