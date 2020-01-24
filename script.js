@@ -167,7 +167,7 @@ function drawkaidan(shortestPath) {
     let ctx = canvas.getContext('2d');
     ctx.beginPath();
     ctx.globalCompositeOperation = "source-over";
-    ctx.drawImage(Ik, kaidan_x, kaidan_y, 1100, 100);
+    ctx.drawImage(Ik, kaidan_x, kaidan_y, 100, 100);
     ctx.closePath();
   }
 }
