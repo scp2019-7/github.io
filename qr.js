@@ -13,6 +13,7 @@ function toggleQR() {
     $("video").style.display = "none";
     video.srcObject.getTracks()[0].stop();
     $("qr_button").value = "QR読み込み";
+    $("div_map").style.display = "";
   }
   else {
     $("video").style.display = "block";
@@ -24,6 +25,7 @@ function toggleQR() {
           .catch(err => alert(err))
       );
     $("qr_button").value = "地図に戻る";
+    $("div_map").style.display = "none";
   }
 }
 

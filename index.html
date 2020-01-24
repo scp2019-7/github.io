@@ -17,26 +17,27 @@
 
 <body>
   <!-- Start your code here -->
-  <div class="cp_iptxt">
-    <input type="text" id="text1" placeholder="目的地を入力" onkeypress="hoge(event.keyCode);" class="ef" />
-    <input type="button" id="button1" value="検索" onclick="kensaku()" class="btn-flat-border" />
-  </div>
-  <div id="text2"></div>
-  </br>
-  </br>
-  <input type="button" id="1f_button" value="1F" onclick="changeFloor(1)" class="btn-flat-border" />
-  <input type="button" id="2f_button" value="2F" onclick="changeFloor(2)" class="btn-flat-border" />
-  </br>
-  <div id="axisCanvasRapper">
-    <canvas id="axisCanvas"></canvas>
+  <div id="div_map">
+    <div class="cp_iptxt">
+      <input type="text" id="text1" placeholder="目的地を入力" onkeypress="hoge(event.keyCode);" class="ef" />
+      <input type="button" id="button1" value="検索" onclick="kensaku()" class="btn-flat-border" />
+    </div>
+    <div id="text2"></div>
+    </br>
+    </br>
+    <input type="button" id="1f_button" value="1F" onclick="changeFloor(1)" class="btn-flat-border" />
+    <input type="button" id="2f_button" value="2F" onclick="changeFloor(2)" class="btn-flat-border" />
+    </br>
+    <div id="axisCanvasRapper">
+      <canvas id="axisCanvas"></canvas>
+    </div>
   </div>
 
-  <input type="button" id="qr_button" value="QR読み取り" onclick="toggleQR()" class="btn-flat-border" />
 
   <video id="video" autoplay playsinline class="qr_video"></video>
   <canvas id="canvas" hidden class="qr_canvas"></canvas>
   <div id="outputMessage" class="qr_outputMessage"></div>
-
+  <input type="button" id="qr_button" value="QR読み取り" onclick="toggleQR()" class="btn-flat-border" />
   <!-- End your code here -->
 </body>
 
