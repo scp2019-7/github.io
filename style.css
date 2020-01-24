@@ -2,12 +2,10 @@
     font-family: 'Ropa Sans', sans-serif;
     color: #333;
     margin: 3% 3% 3% 3%;
-    width: 100%;
   }
 
 .btn-flat-border {
 	display: inline-block;
-	font-size: large;
   padding: 3px 20px;
 	text-decoration: none;
 	background-color: white;
@@ -27,8 +25,7 @@
 }
 .cp_iptxt input[type='text'] {
 	box-sizing: border-box;
-	font-size: large;
-	width: 75%;
+	width: 73%;
 	padding: 6px 15px;
 	transition: 0.3s;
 	letter-spacing: 1px;
@@ -41,5 +38,5 @@
 	outline: none;
 }
 .cp_iptxt input[type='button'] {
-	width: 15%;
+	width: 23%;
 }
