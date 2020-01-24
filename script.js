@@ -223,6 +223,10 @@ function draw() {
 
 function kensaku() {
   var goal = $("text1").value;
+  if (goal == "") {
+    location.search = "?" + getstartID();
+    return;
+  }
   var gindex = goal2index(goal, QRdb);
   //$("text2").innerText = gindex;
   if (gindex == -1)
