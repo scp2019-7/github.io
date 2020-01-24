@@ -60,16 +60,23 @@ jQuery(function () {
       var regexp = new RegExp('(' + request.term + ')');
 
       jQuery.each(QRdb, function (i, values) {
-        if (values[5].match(regexp)) {
+        if (values[5].match(regexp) || values[6].match(regexp)) {
           suggests.push(values[5]);
         }
       });
 
       response(suggests);
     },
+    focus: function (request, response){
+      var suggests = [];
+      jQuery.each(QRdb, function (i, values) {
+          suggests.push(values[5]);
+      });
+      response(suggests);
+    },
     autoFocus: true,
     delay: 300,
-    minLength: 1
+    minLength: 0
   });
 });
 
