@@ -227,5 +227,17 @@ function hoge(code) {
 
 function changeFloor(f) {
   floor = f;
+  if (floor == 1) {
+    $("1f_button").style.backgroundColor = "#67c5ff";
+    $("1f_button").style.color = "white";
+    $("2f_button").style.backgroundColor = "white";
+    $("2f_button").style.color = "#67c5ff";
+  }
+  else if (floor == 2) {
+    $("1f_button").style.backgroundColor = "white";
+    $("1f_button").style.color = "#67c5ff";
+    $("2f_button").style.backgroundColor = "#67c5ff";
+    $("2f_button").style.color = "white";
+  }
   draw();
 }
