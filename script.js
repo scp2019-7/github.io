@@ -173,13 +173,12 @@ function drawkaidan(shortestPath) {
 }
 
 window.onload = () => {
-  setupCanvas($('axisCanvas'));
   const cur_QRID = getstartID();
   const cur_QRindex = Number(cur_QRID);
   const cur_z = QRdb[cur_QRindex][3];
   changeFloor(cur_z);
-  draw();
 };
+
 function draw() {
   let canvas = $('axisCanvas');
   let ctx = canvas.getContext('2d');
@@ -199,7 +198,7 @@ function draw() {
     const graph = genTestGraph();
     const shortestPath = dijkstra(cur_QRindex, Number(goalID), graph);
     console.log('shortestPath: [' + shortestPath + ']');
-
+    $('text1').value = QRdb[Number(goalID)][5];
     drawPath(shortestPath);
     drawkaidan(shortestPath);
   }
@@ -217,7 +216,7 @@ function draw() {
 function kensaku() {
   var goal = $("text1").value;
   var gindex = goal2index(goal, QRdb);
-  $("text2").innerText = gindex;
+  //$("text2").innerText = gindex;
   if (gindex == -1)
     $("text2").innerText = "正しい目的地を選択して下さい";
   else
