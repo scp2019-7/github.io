@@ -1,7 +1,7 @@
 "use strict";
 
-const canvasW = 900;
-const canvasH = 600;
+const canvasW = window.parent.screen.width * 0.94;
+const canvasH = canvasW / 510 * 454;
 const QRdb = csvToArray("database/qr_info.csv");
 let floor = 1;
 
