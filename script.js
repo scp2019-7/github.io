@@ -67,10 +67,10 @@ jQuery(function () {
 
       response(suggests);
     },
-    focus: function (request, response){
+    focus: function (request, response) {
       var suggests = [];
       jQuery.each(QRdb, function (i, values) {
-          suggests.push(values[5]);
+        suggests.push(values[5]);
       });
       response(suggests);
     },
@@ -131,11 +131,14 @@ function drawPath(shortestPath) {
 
   const goal_x = QRdb[shortestPath[0]][1];
   const goal_y = QRdb[shortestPath[0]][2];
-  ctx.beginPath();
-  ctx.fillStyle = 'hsl( 0, 100%, 20% )';
-  ctx.arc(goal_x * canvasW, goal_y * canvasH, 20, 0, Math.PI * 2, false);
-  ctx.fill();
-  ctx.closePath();
+  const goal_z = QRdb[shortestPath[0]][3];
+  if (goal_z == floor) {
+    ctx.beginPath();
+    ctx.fillStyle = 'hsl( 0, 100%, 20% )';
+    ctx.arc(goal_x * canvasW, goal_y * canvasH, 20, 0, Math.PI * 2, false);
+    ctx.fill();
+    ctx.closePath();
+  }
 }
 
 function drawClikedPosition(e) {
