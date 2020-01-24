@@ -1,7 +1,7 @@
 "use strict";
 
-const canvasW = window.parent.screen.width * 0.94;
-const canvasH = canvasW / 510 * 454;
+const canvasW = 510 * 3;
+const canvasH = 454 * 3;
 const QRdb = csvToArray("database/qr_info.csv");
 let floor = 1;
 
@@ -172,8 +172,25 @@ function drawkaidan(shortestPath) {
   }
 }
 
+function setupCanvas(canvas) {
+  // Get the device pixel ratio, falling back to 1.
+  var dpr = window.devicePixelRatio || 1;
+  // Get the size of the canvas in CSS pixels.
+  var rect = canvas.getBoundingClientRect();
+  // Give the canvas pixel dimensions of their CSS
+  // size * the device pixel ratio.
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  var ctx = canvas.getContext('2d');
+  // Scale all drawing operations by the dpr, so you
+  // don't have to worry about the difference.
+  ctx.scale(dpr, dpr);
+  return ctx;
+}
+
 
 window.onload = () => {
+  setupCanvas($('axisCanvas'));
   const cur_QRID = getstartID();
   const cur_QRindex = Number(cur_QRID);
   const cur_z = QRdb[cur_QRindex][3];

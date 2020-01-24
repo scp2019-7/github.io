@@ -2,7 +2,11 @@
     font-family: 'Ropa Sans', sans-serif;
     color: #333;
     margin: 3% 3% 3% 3%;
-  }
+	}
+	
+	#axisCanvas{
+		width: 100%;
+	}
 
 .btn-flat-border {
 	display: inline-block;
