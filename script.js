@@ -64,14 +64,13 @@ jQuery(function () {
           suggests.push(values[5]);
         }
       });
-
       response(suggests);
     },
     autoFocus: true,
     delay: 300,
     minLength: 0
   }).focus(function() {
-    $(this).autocomplete("search", "");
+    jQuery(this).autocomplete("search", "");
   });
 });
 
